@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberCore - Tienda</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #0f172a;
+    color: white;
+}
+
+header {
+    background: linear-gradient(90deg, #06b6d4, #3b82f6);
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    background: #1e293b;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+.container {
+    padding: 20px;
+    text-align: center;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    background: #1e293b;
+    border-radius: 15px;
+    margin: 15px;
+    padding: 15px;
+    width: 250px;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+button {
+    background: #06b6d4;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0891b2;
+}
+
+#cart {
+    background: #020617;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #020617;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>CyberCore</h1>
+    <p>Tienda de computadoras y tecnología</p>
+</header>
+
+<nav>
+    <a href="#">Inicio</a>
+    <a href="#">Productos</a>
+    <a href="#cart">Carrito</a>
+</nav>
+
+<div class="container">
+    <h2>Productos</h2>
+
+    <div class="products">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7">
+            <h3>PC Gamer</h3>
+            <p>S/ 3500</p>
+            <button onclick="addToCart('PC Gamer', 3500)">Agregar</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
+            <h3>Laptop</h3>
+            <p>S/ 2500</p>
+            <button onclick="addToCart('Laptop', 2500)">Agregar</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3">
+            <h3>Teclado Gamer</h3>
+            <p>S/ 150</p>
+            <button onclick="addToCart('Teclado Gamer', 150)">Agregar</button>
+        </div>
+
+    </div>
+</div>
+
+<div id="cart" class="container">
+    <h2>Carrito de Compras</h2>
+    <ul id="cart-items"></ul>
+    <h3>Total: S/ <span id="total">0</span></h3>
+</div>
+
+<footer>
+    <p>© 2026 CyberCore</p>
+</footer>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(product, price) {
+    cart.push({product, price});
+    total += price;
+    updateCart();
+}
+
+function updateCart() {
+    let list = document.getElementById("cart-items");
+    list.innerHTML = "";
+
+    cart.forEach(item => {
+        let li = document.createElement("li");
+        li.textContent = item.product + " - S/ " + item.price;
+        list.appendChild(li);
+    });
+
+    document.getElementById("total").textContent = total;
+}
+</script>
+
+</body>
+</html>
